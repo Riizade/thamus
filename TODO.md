@@ -1,0 +1,4 @@
+- allow outputting different audio formats via pydub (mp3, wav, etc)
+- write script to package as a binary for release
+- figure out how to better package voices and allow for easier selection from CLI
+- GUI?

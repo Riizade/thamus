@@ -10,6 +10,10 @@ torch = "*"
 torchvision = "*"
 torchaudio = "*"
 transformers = "*"
+pypandoc-binary = "*"
+click = "*"
+tqdm = "*"
+pydub = "*"
 
 [dev-packages]
 

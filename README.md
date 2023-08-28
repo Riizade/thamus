@@ -3,16 +3,19 @@ Converts ebooks to mp3 audiobook files
 
 # License
 
-- [Tortoise](https://github.com/neonbjb/tortoise-tts/tree/main) has its full source included in this repository (`src/tortoise-tts/`) and redistributed under the original Apache License 2.0 with no modifications
+- [Tortoise](https://github.com/neonbjb/tortoise-tts/tree/main) has its full source included in this repository (`src/tortoise/`) and redistributed under the original Apache License 2.0 with no modifications
+    - Tortoise was cloned at commit hash `4003544b6ff4b68c09856e04d3eff9da26d023c2` on 2023-08-28
 - The rest of the repository is covered under the provided MIT License
 
-# Development Prerequisites
+# Development
 
-## pipenv
+## Prerequisites
+
+### pipenv
 
 - run `pipenv install` from the main directory of this repo
 
-## Conda (deprecated)
+### Conda (deprecated)
 
 - install [miniconda](https://docs.conda.io/en/latest/miniconda.html)
 - create conda project
@@ -27,6 +30,10 @@ Converts ebooks to mp3 audiobook files
 - install other dependencies
     - `conda install transformers=4.29.2`
     - if on Windows: `conda install -c conda-forge pysoundfile`
+
+## Example Run
+
+`pipenv run python -m src/main.py --book example_books/wonderlab.epub --voice src/tortoise/voices/train_grace`
 
 # origin of the name thamus
 

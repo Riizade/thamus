@@ -1,3 +1,10 @@
+# Project Specific
+# ignore generated audio
+example_books/*.mp3
+example_books/*.wav
+example_books/*.ogg
+example_books/*.flac
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
