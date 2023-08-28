@@ -12,6 +12,12 @@ Converts ebooks to mp3 audiobook files
 
 # Development
 
+Development only tested on Windows.
+
+There may be dependency issues on Linux or other platforms.
+
+In particular, the audio backend for pytorch might need to be `Sox` instead of `SoundFile` (`pipenv install sox`)
+
 ## Prerequisites
 
 ### pipenv
@@ -36,7 +42,7 @@ Converts ebooks to mp3 audiobook files
 
 ## Example Run
 
-`pipenv run python -m src.main --book example_books/wonderlab.epub --voice src/tortoise/voices/train_grace`
+`pipenv run python -m src.main --book example_books/wonderland.epub --voice tortoise/tortoise/voices/train_grace`
 
 # origin of the name thamus
 

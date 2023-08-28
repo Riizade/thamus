@@ -9,6 +9,7 @@ from torch import FloatTensor
 import torchaudio
 import tempfile
 import pydub
+from tqdm import tqdm
 
 @click.command(name="convert")
 @click.option("--book", required=True, type=click.Path(exists=True, file_okay=True, dir_okay=False), help="The filepath of the ebook you'd like to convert to audio")
@@ -24,7 +25,7 @@ def main(book: click.Path, voice: click.Path, quality: str):
 
 def collect_reference_clips(clip_path: Path) -> list[FloatTensor]:
     clip_paths = list(clip_path.iterdir())
-    reference_clips = [tortoise_utils.audio.load_audio(audiopath=p, sampling_rate=22050) for p in clip_paths]
+    reference_clips = [tortoise_utils.audio.load_audio(audiopath=str(p), sampling_rate=22050) for p in clip_paths]
     return reference_clips
 
 def write_audio(text: str, write_path: Path, quality: str, reference_clips: list[FloatTensor]):
@@ -36,8 +37,9 @@ def write_audio(text: str, write_path: Path, quality: str, reference_clips: list
     
     tts = tortoise_api.TextToSpeech(kv_cache=True)
 
-    # for each line
-    for line_idx, line in enumerate(lines):
+    # generate audio for each line
+    print("generating audio for each line...", flush=True)
+    for line_idx, line in tqdm(enumerate(lines)):
         # generate the audio data using Tortoise
         generated_data, _debug_state = tts.tts_with_preset(text=line, preset=quality)
 
@@ -54,8 +56,9 @@ def write_audio(text: str, write_path: Path, quality: str, reference_clips: list
     file_list.sort(key=lambda x: x.stem)
 
     # concatenate all the saved audio clips into one massive clip
+    print("combining audio clips", flush=True)
     combined_clip = pydub.AudioSegment.from_wav(file_list[0])
-    for f in file_list[1:]:
+    for f in tqdm(file_list[1:]):
         combined_clip = combined_clip + pydub.AudioSegment.from_wav(f)
     
     # save the combined clip to disk

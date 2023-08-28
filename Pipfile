@@ -15,6 +15,11 @@ click = "*"
 tqdm = "*"
 pydub = "*"
 progressbar = "*"
+einops = "*"
+soundfile = "*"
+rotary-embedding-torch = "*"
+librosa = "*"
+unidecode = "*"
 
 [dev-packages]
 
