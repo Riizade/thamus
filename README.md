@@ -3,8 +3,10 @@ Converts ebooks to mp3 audiobook files
 
 # License
 
-- [Tortoise](https://github.com/neonbjb/tortoise-tts/tree/main) has its full source included in this repository (`./tortoise/`) and redistributed under the original Apache License 2.0 with no modifications
+- [Tortoise](https://github.com/neonbjb/tortoise-tts/tree/main) has its full source included in this repository (`./tortoise/`) and redistributed under the original [Apache License 2.0](./tortoise/LICENSE) with minor modifications
     - Tortoise was cloned at commit hash `4003544b6ff4b68c09856e04d3eff9da26d023c2` on 2023-08-28
+    - Below is a list of all changes made to the tortoise source
+        - The tortoise source had its imports modified to reflect its new directory structure
 - The provided sample books are in the public domain and were acquired from [Project Gutenberg](https://www.gutenberg.org/)
 - The rest of the repository is covered under the provided MIT License
 

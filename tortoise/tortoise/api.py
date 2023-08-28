@@ -9,19 +9,19 @@ import torch.nn.functional as F
 import progressbar
 import torchaudio
 
-from tortoise.models.classifier import AudioMiniEncoderWithClassifierHead
-from tortoise.models.diffusion_decoder import DiffusionTts
-from tortoise.models.autoregressive import UnifiedVoice
+from tortoise.tortoise.models.classifier import AudioMiniEncoderWithClassifierHead
+from tortoise.tortoise.models.diffusion_decoder import DiffusionTts
+from tortoise.tortoise.models.autoregressive import UnifiedVoice
 from tqdm import tqdm
-from tortoise.models.arch_util import TorchMelSpectrogram
-from tortoise.models.clvp import CLVP
-from tortoise.models.cvvp import CVVP
-from tortoise.models.random_latent_generator import RandomLatentConverter
-from tortoise.models.vocoder import UnivNetGenerator
-from tortoise.utils.audio import wav_to_univnet_mel, denormalize_tacotron_mel
-from tortoise.utils.diffusion import SpacedDiffusion, space_timesteps, get_named_beta_schedule
-from tortoise.utils.tokenizer import VoiceBpeTokenizer
-from tortoise.utils.wav2vec_alignment import Wav2VecAlignment
+from tortoise.tortoise.models.arch_util import TorchMelSpectrogram
+from tortoise.tortoise.models.clvp import CLVP
+from tortoise.tortoise.models.cvvp import CVVP
+from tortoise.tortoise.models.random_latent_generator import RandomLatentConverter
+from tortoise.tortoise.models.vocoder import UnivNetGenerator
+from tortoise.tortoise.utils.audio import wav_to_univnet_mel, denormalize_tacotron_mel
+from tortoise.tortoise.utils.diffusion import SpacedDiffusion, space_timesteps, get_named_beta_schedule
+from tortoise.tortoise.utils.tokenizer import VoiceBpeTokenizer
+from tortoise.tortoise.utils.wav2vec_alignment import Wav2VecAlignment
 from contextlib import contextmanager
 pbar = None
 
