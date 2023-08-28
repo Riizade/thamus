@@ -1,13 +1,18 @@
 # thamus
 Converts ebooks to mp3 audiobook files
 
-## Development Prerequisites
+# License
 
-### pipenv
+- [Tortoise](https://github.com/neonbjb/tortoise-tts/tree/main) has its full source included in this repository (`src/tortoise-tts/`) and redistributed under the original Apache License 2.0 with no modifications
+- The rest of the repository is covered under the provided MIT License
+
+# Development Prerequisites
+
+## pipenv
 
 - run `pipenv install` from the main directory of this repo
 
-### Conda (deprecated)
+## Conda (deprecated)
 
 - install [miniconda](https://docs.conda.io/en/latest/miniconda.html)
 - create conda project
@@ -23,7 +28,7 @@ Converts ebooks to mp3 audiobook files
     - `conda install transformers=4.29.2`
     - if on Windows: `conda install -c conda-forge pysoundfile`
 
-## origin of the name thamus
+# origin of the name thamus
 
 This project is named for Plato's play [Phaedrus](http://classics.mit.edu/Plato/phaedrus.html) in which King [Thamus](https://en.wikipedia.org/wiki/Thamus_(mythical_King_of_Egypt)) believes that the gift of writing will "will create forgetfulness in the learners' souls".
 
