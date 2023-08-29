@@ -20,9 +20,18 @@ In particular, the audio backend for pytorch might need to be `Sox` instead of `
 
 ## Prerequisites
 
+Your machine _must_ have an NVIDIA GPU capable of running CUDA 11.7. (I tried to get the CPU-only version working and could not, because I am unfamiliar with the pytorch ecosystem).
+
 ### pipenv
 
+- install CUDA Toolkit (https://developer.nvidia.com/cuda-downloads)
 - run `pipenv install` from the main directory of this repo
+
+#### pipenv notes
+
+PyTorch installation is a little complex.
+
+This is the command that worked for me: `pipenv install --index https://download.pytorch.org/whl/cu117 "torch==2.0.1" "torchaudio=2.0.1"`
 
 ### Conda (deprecated)
 

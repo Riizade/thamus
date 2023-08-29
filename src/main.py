@@ -10,6 +10,8 @@ import torchaudio
 import tempfile
 import pydub
 from tqdm import tqdm
+import re
+import string
 
 @click.command(name="convert")
 @click.option("--book", required=True, type=click.Path(exists=True, file_okay=True, dir_okay=False), help="The filepath of the ebook you'd like to convert to audio")
@@ -33,23 +35,30 @@ def write_audio(text: str, write_path: Path, quality: str, reference_clips: list
     # the model works best with clips 5-10 seconds in length 
     lines = text.splitlines()
     # create a temporary directory to save intermediate short audio clips
-    temporary_directory = tempfile.TemporaryDirectory(prefix="tmp_audio")
+    temporary_directory = tempfile.TemporaryDirectory(prefix="thamus_tmp_audio_clips_")
+    print(f"temporary directory created at: {temporary_directory.name}")
     
     tts = tortoise_api.TextToSpeech(kv_cache=True)
 
     # generate audio for each line
-    print("generating audio for each line...", flush=True)
-    for line_idx, line in tqdm(enumerate(lines)):
+    print(f"generating audio for each of {len(lines)} lines...", flush=True)
+    for line_idx, line in enumerate(tqdm(lines)):
+        # skip lines with only punctuation
+        if all(c in string.punctuation for c in line):
+            print(f"skipping empty line {line}", flush=True)
+            continue
         # generate the audio data using Tortoise
-        generated_data, _debug_state = tts.tts_with_preset(text=line, preset=quality)
+        print(f"generating audio for line {line}", flush=True)
+        generated_data = tts.tts_with_preset(text=line, preset=quality)
+
 
         # save the generated clip to file in the temporary directory
         # below code was modeled after tortoise/do_tts.py
         if isinstance(generated_data, list):
             for sub_idx, g in enumerate(generated_data):
-                torchaudio.save(temporary_directory / f'output_{line_idx}_{sub_idx}.wav', g.squeeze(0).cpu(), 24000)
+                torchaudio.save(Path(temporary_directory.name) / f'output_{line_idx}_{sub_idx}.wav', g.squeeze(0).cpu(), 24000)
         else:
-            torchaudio.save(temporary_directory / f'output_{line_idx}.wav', generated_data.squeeze(0).cpu(), 24000)
+            torchaudio.save(Path(temporary_directory.name) / f'output_{line_idx}.wav', generated_data.squeeze(0).cpu(), 24000)
     
     # generate a list of output files in alphabetical order
     file_list = list(Path(temporary_directory.name).iterdir())
@@ -67,6 +76,12 @@ def write_audio(text: str, write_path: Path, quality: str, reference_clips: list
     # remove the temporary directory
     temporary_directory.cleanup()
 
+def clean_text_chunk(text_chunk: str) -> str:
+    # remove _italics_
+    text_chunk = re.sub(r"_", " ", text_chunk)
+    # remove --- hyphens for footnotes
+    text_chunk = re.sub(r"(\-{3,})", "Footnote:", text_chunk)
+    return text_chunk
 
 def convert_to_plaintext(path: Path) -> str:
     try:
