@@ -1,5 +1,5 @@
 # thamus
-Converts ebooks to mp3 audiobook files
+Converts ebooks to wav audiobook files
 
 # License
 
