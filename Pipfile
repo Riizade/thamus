@@ -3,12 +3,24 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[[source]]
+url = "https://download.pytorch.org/whl/cu117"
+verify_ssl = true
+name = "downloadpytorch"
+
+[[source]]
+url = "https://download.pytorch.org/whl/cu117"
+verify_ssl = true
+name = "downloadpytorch"
+
+[[source]]
+url = "https://download.pytorch.org/whl/cu117"
+verify_ssl = true
+name = "downloadpytorch"
+
 [packages]
 inflect = "*"
 numba = "*"
-torch = "*"
-torchvision = "*"
-torchaudio = "*"
 transformers = "*"
 pypandoc-binary = "*"
 click = "*"
@@ -20,6 +32,8 @@ soundfile = "*"
 rotary-embedding-torch = "*"
 librosa = "*"
 unidecode = "*"
+torchaudio = {version = "*", index = "downloadpytorch"}
+torch = {version = "==2.0.1", index = "downloadpytorch"}
 
 [dev-packages]
 
