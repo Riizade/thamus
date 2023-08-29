@@ -18,7 +18,7 @@ import string
 @click.option("--voice", required=True, type=click.Path(exists=True, file_okay=False, dir_okay=True), help="The path of the directory containing the voice clips to use as a reference; check the voices/ directory for options")
 @click.option("--quality", type=click.Choice(['ultra_fast', 'fast', 'standard', 'high_quality']), default="standard", help="The quality preset to use when generating audio. Higher quality takes more time.")
 @click.option("--kv-cache/--no-kv-cache", type=bool, default=True, help="Enables caching during audio generation, should speed up generation time.")
-@click.option("--use-deepspeed/--no-deepspeed", type=bool, default=True, help="Enables deepspeed during audio generation, should speed up generation time.")
+@click.option("--use-deepspeed/--no-deepspeed", type=bool, default=False, help="Enables deepspeed during audio generation, should speed up generation time.")
 @click.option("--full/--half", type=bool, default=True, help="Whether to use full precision (32-bit) or half precision (16-bit). Full precision should be higher quality, but generate more slowly.")
 def main(book: click.Path, voice: click.Path, quality: str, kv_cache: bool, use_deepspeed: bool, full: bool):
     path = Path(book)
