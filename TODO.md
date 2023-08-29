@@ -14,3 +14,6 @@
 - lines with multiple asterisks (`*** START OF THE PROJECT GUTENBERG EBOOK ALICE'S ADVENTURES IN WONDERLAND ***`) generate weird audio
     - clean these kinds of lines
 - lines with spaces are not filtered as containing only punctuation (`generating audio for line   --------------- -----------------------------------`)
+- cannot use deepspeed yet because the dependency can't be installed via pip
+- need to break up larger lines, otherwise it fails to generate audio or just gets weird
+- multiple spaces mess up audio generation (collapse multi-space, tab, etc to single space)

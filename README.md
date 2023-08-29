@@ -49,9 +49,10 @@ This is the command that worked for me: `pipenv install --index https://download
     - `conda install transformers=4.29.2`
     - if on Windows: `conda install -c conda-forge pysoundfile`
 
-## Example Run
+## Example Invocations
 
-`pipenv run python -m src.main --book example_books/wonderland.epub --voice tortoise/tortoise/voices/train_grace`
+- Standard: `pipenv run python -m src.main --book example_books/wonderland.epub --voice tortoise/tortoise/voices/train_grace`
+- Fast: `pipenv run python -m src.main --book example_books/wonderland.epub --voice tortoise/tortoise/voices/train_grace --quality ultra_fast --half --kv-cache --use-deepspeed`
 
 # origin of the name thamus
 
