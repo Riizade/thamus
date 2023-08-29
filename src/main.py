@@ -88,6 +88,7 @@ def convert_to_plaintext(path: Path) -> str:
         return pypandoc.convert_file(path, "plain", extra_args=["--wrap=none"])
     except RuntimeError as e:
         print(f"pypandoc could not read the given file due to error: {e}", flush=True)
+        exit(1)
 
 if __name__ == "__main__":
     main()
